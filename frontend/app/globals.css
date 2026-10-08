@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Native UI (form controls, scrollbars, selection) follows the active theme —
+   without this, light mode gets dark-mode native widgets and vice versa. */
+html {
+  color-scheme: light;
+}
+html.dark {
+  color-scheme: dark;
+}
+
+/* ============================================================================
+   BASE STYLES
+   ============================================================================ */
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Selection — tinted with the accent so even selecting text feels branded */
+::selection {
+  background: rgba(47, 91, 255, 0.15);
+}
+
+.dark ::selection {
+  background: rgba(108, 140, 255, 0.3);
+}
+
+/* Focus states */
+:focus-visible {
+  outline: 2px solid #2F5BFF;
+  outline-offset: 4px;
+}
+
+/* ============================================================================
+   SCROLLBAR
+   ============================================================================ */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+}

@@ -1,0 +1,164 @@
+# Staging compose — SELF-CONTAINED, production build, served on the gateway port.
+#
+#   docker compose -f docker-compose.staging.yml up -d --build
+#
+# This is what the server runs for a live preview, built on the box itself —
+# no Jenkins in the path.
+#
+# It is deliberately NOT an overlay on docker-compose.prod.yml. prod.yml is
+# the Traefik path: it requires an external `traefik-public` network and bakes
+# https://${DOMAIN_NAME} into CORS_ORIGINS/FRONTEND_URL, neither of which
+# exists on a port-served preview. The *build* is identical to prod
+# (target: production, standalone Next server, no bind mounts) — only ingress
+# and origin differ.
+#
+# Why not docker-compose.yml (the hot-reload dev stack): `next dev` keeps the
+# module graph, HMR state and source maps resident and never releases them —
+# measured at 0.5-4 GB per preview and still growing after days of uptime,
+# against ~40 MB for the standalone server. Previews are long-lived and
+# mostly idle, so they run the production build. Use docker-compose.yml when
+# developing locally, where hot reload is worth the memory.
+#
+# Every service carries a mem_limit so one preview can never take the host
+# down: before these limits a single runaway frontend OOM-killed the box.
+
+x-healthcheck-defaults: &healthcheck-defaults
+  interval: 15s
+  timeout: 10s
+  # Cold starts are slow on first deploy; a short start_period marks a healthy
+  # container as failed before it has finished booting.
+  start_period: 60s
+  retries: 5
+
+services:
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "21631:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      frontend:
+        condition: service_healthy
+      backend:
+        condition: service_healthy
+    networks:
+      - internal
+    mem_limit: 64m
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q --spider http://127.0.0.1:80/ || exit 1"]
+      <<: *healthcheck-defaults
+    labels:
+      # Sablier scale-to-zero, off unless the deploy opts in. Harmless when
+      # no Sablier is watching; the port path has no waker, so never enable
+      # it for a preview reached only by port.
+      - "sablier.enable=${SABLIER_ENABLE:-false}"
+      - "sablier.group=${ROUTER_PREFIX:-staging}"
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      target: production
+    environment:
+      - NODE_ENV=production
+      # The standalone server binds 127.0.0.1 unless told otherwise, which
+      # makes it unreachable from nginx.
+      - HOSTNAME=0.0.0.0
+      - PORT=3000
+      - NEXT_PUBLIC_API_URL=/api
+      - NEXT_PUBLIC_SITE_NAME=${SITE_NAME:-42d6f3fc-6853-4abf-a5bf-9e132af66c77}
+    networks:
+      - internal
+    mem_limit: 512m
+    healthcheck:
+      test: ["CMD-SHELL", "node -e \"fetch('http://127.0.0.1:3000/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))\""]
+      <<: *healthcheck-defaults
+    labels:
+      - "sablier.enable=${SABLIER_ENABLE:-false}"
+      - "sablier.group=${ROUTER_PREFIX:-staging}"
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+      target: production
+    environment:
+      - PORT=8000
+      - ENV=production
+      # nginx serves the app and /api on one origin, so the browser request is
+      # same-origin; PUBLIC_URL only needs setting when something fronts this
+      # preview under a different name (the V2 edge does).
+      - CORS_ORIGINS=${PUBLIC_URL:-http://localhost:21631}
+      - DATABASE_URL=postgresql+asyncpg://${DB_USER:-app_user}:${DB_PASSWORD:-password}@db:5432/${DB_NAME:-app_db}
+      - DB_HOST=db
+      - DB_NAME=${DB_NAME:-app_db}
+      - DB_USER=${DB_USER:-app_user}
+      - DB_PASSWORD=${DB_PASSWORD:-password}
+      # prefer, not disable — the app rejects disable when ENV=production
+      - POSTGRES_SSLMODE=prefer
+      - SITE_NAME=${SITE_NAME:-42d6f3fc-6853-4abf-a5bf-9e132af66c77}
+      - FRONTEND_URL=${PUBLIC_URL:-http://localhost:21631}
+    depends_on:
+      db:
+        condition: service_healthy
+      migrate:
+        condition: service_completed_successfully
+    networks:
+      - internal
+    mem_limit: 512m
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://127.0.0.1:8000/health || exit 1"]
+      <<: *healthcheck-defaults
+    labels:
+      - "sablier.enable=${SABLIER_ENABLE:-false}"
+      - "sablier.group=${ROUTER_PREFIX:-staging}"
+    restart: unless-stopped
+
+  migrate:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+      target: production
+    command: alembic upgrade head
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://${DB_USER:-app_user}:${DB_PASSWORD:-password}@db:5432/${DB_NAME:-app_db}
+      - POSTGRES_SSLMODE=prefer
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - internal
+    mem_limit: 256m
+    restart: "no"
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      - POSTGRES_DB=${DB_NAME:-app_db}
+      - POSTGRES_USER=${DB_USER:-app_user}
+      - POSTGRES_PASSWORD=${DB_PASSWORD:-password}
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./database:/docker-entrypoint-initdb.d
+    networks:
+      - internal
+    mem_limit: 512m
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-app_user} -d ${DB_NAME:-app_db}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    labels:
+      - "sablier.enable=${SABLIER_ENABLE:-false}"
+      - "sablier.group=${ROUTER_PREFIX:-staging}"
+    restart: unless-stopped
+
+networks:
+  internal:
+    driver: bridge
+
+volumes:
+  db_data:
