@@ -123,7 +123,7 @@ pipeline {
                         ssh -o StrictHostKeyChecking=no -p ${SSH_PORT} ${DEPLOY_USER}@${DEPLOY_HOST} \\
                           "docker network create traefik-public 2>/dev/null || true && \\
                            cd ~/deployments/${CONTAINER} && \\
-                           docker compose -f docker-compose.prod.yml build && \\
+                           export DOMAIN_NAME='create-a-premium-modern-intern-4aao.tediux.com' ROUTER_PREFIX='create-a-premium-modern-intern-4aao-tediux-com' && docker compose -f docker-compose.prod.yml build && \\
                            docker compose -f docker-compose.prod.yml up -d --force-recreate --remove-orphans"
                     """
                 }
