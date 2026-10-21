@@ -29,19 +29,47 @@ html {
   }
 }
 
-/* Selection — tinted with the accent so even selecting text feels branded */
+/* Selection — tinted with champagne gold so even selecting text feels branded */
 ::selection {
-  background: rgba(47, 91, 255, 0.15);
+  background: rgba(214, 183, 124, 0.25);
 }
 
 .dark ::selection {
-  background: rgba(108, 140, 255, 0.3);
+  background: rgba(214, 183, 124, 0.3);
 }
 
 /* Focus states */
 :focus-visible {
-  outline: 2px solid #2F5BFF;
+  outline: 2px solid #D6B77C;
   outline-offset: 4px;
+}
+
+/* Arabic pages use the Latin display face (font-display) by default via the
+   Tailwind fallback stack, which only reaches system-ui for Arabic glyphs.
+   This keeps every large/medium heading on the Arabic site in the intended
+   Arabic display typeface, without touching every heading individually. */
+html[lang='ar'] .font-display {
+  font-family: var(--font-arabic-display), var(--font-display), system-ui, sans-serif;
+}
+
+/* Slow cinematic zoom for hero / editorial media */
+@keyframes ken-burns {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.12);
+  }
+}
+
+.animate-ken-burns {
+  animation: ken-burns 22s ease-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-ken-burns {
+    animation: none;
+  }
 }
 
 /* ============================================================================

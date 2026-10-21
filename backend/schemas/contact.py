@@ -6,7 +6,7 @@ from uuid import UUID
 
 from pydantic import EmailStr, Field, field_validator
 
-from models.contact import ContactStatus, SubscriptionSource
+from models.contact import ContactAreaOfInterest, ContactStatus, SubscriptionSource
 from .base import BaseSchema, TimestampSchema, UUIDSchema
 
 
@@ -41,6 +41,20 @@ class ContactSubmissionCreate(BaseSchema):
         max_length=500,
         description="Message subject (optional)",
     )
+    phone: Optional[str] = Field(
+        None,
+        max_length=50,
+        description="Sender's phone number (optional)",
+    )
+    country: Optional[str] = Field(
+        None,
+        max_length=255,
+        description="Sender's country (optional)",
+    )
+    area_of_interest: Optional[ContactAreaOfInterest] = Field(
+        None,
+        description="Area of interest selected on the contact form (optional)",
+    )
 
     @field_validator("name", "message")
     @classmethod
@@ -57,6 +71,9 @@ class ContactSubmissionResponse(UUIDSchema, TimestampSchema):
     message: str
     company: Optional[str] = None
     subject: Optional[str] = None
+    phone: Optional[str] = None
+    country: Optional[str] = None
+    area_of_interest: Optional[ContactAreaOfInterest] = None
     status: ContactStatus
     ip_address: Optional[str] = None
     user_agent: Optional[str] = None

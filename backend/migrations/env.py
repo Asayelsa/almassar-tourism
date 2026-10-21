@@ -33,8 +33,14 @@ def get_database_url() -> str:
         "DATABASE_URL",
         "postgresql://app_user:password@localhost:5432/app_db"
     )
-    # Convert async URL to sync for Alembic
-    return url.replace("+asyncpg", "").replace("+aiosqlite", "")
+    # Convert async URL to sync for Alembic. SQLAlchemy 2.1 defaults bare
+    # "postgresql://" to the psycopg (v3) driver, which isn't installed —
+    # pin to psycopg2, which is.
+    return (
+        url.replace("+asyncpg", "+psycopg2")
+        .replace("+aiosqlite", "")
+        .replace("postgresql://", "postgresql+psycopg2://")
+    )
 
 
 # Set the database URL

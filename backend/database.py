@@ -104,7 +104,7 @@ def get_sync_engine():
     """Get synchronous engine for Alembic migrations."""
     from sqlalchemy import create_engine
 
-    sync_url = settings.database_url.replace("+asyncpg", "")
+    sync_url = settings.database_url.replace("+asyncpg", "+psycopg2")
     return create_engine(sync_url, echo=settings.debug)
 
 

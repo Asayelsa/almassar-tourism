@@ -33,3 +33,10 @@ export function Textarea({
 }: React.TextareaHTMLAttributes<HTMLTextAreaElement>) {
   return <textarea className={cn(fieldStyles, 'min-h-32 resize-y', className)} {...props} />
 }
+
+export function Select({
+  className,
+  ...props
+}: React.SelectHTMLAttributes<HTMLSelectElement>) {
+  return <select className={cn(fieldStyles, className)} {...props} />
+}

@@ -32,6 +32,27 @@ contact_status_enum = ENUM(
 )
 
 
+class ContactAreaOfInterest(str, enum.Enum):
+    """Area of interest selected on the contact form."""
+
+    TRAVEL_EXPERIENCES = "travel_experiences"
+    CORPORATE_TRAVEL_EVENTS = "corporate_travel_events"
+    TOURISM_INVESTMENT_ADVISORY = "tourism_investment_advisory"
+    PARTNERSHIP = "partnership"
+    OTHER = "other"
+
+    def __str__(self) -> str:
+        return self.value
+
+
+# PostgreSQL ENUM type (must match migration)
+contact_area_of_interest_enum = ENUM(
+    "travel_experiences", "corporate_travel_events", "tourism_investment_advisory", "partnership", "other",
+    name="contact_area_of_interest",
+    create_type=False,
+)
+
+
 class ContactSubmission(UUIDMixin, TimestampMixin, Base):
     """
     Contact form submission model.
@@ -44,6 +65,9 @@ class ContactSubmission(UUIDMixin, TimestampMixin, Base):
         email: Sender's email address
         company: Sender's company (optional)
         subject: Message subject (optional)
+        phone: Sender's phone number (optional)
+        country: Sender's country (optional)
+        area_of_interest: Area of interest selected on the form (optional)
         message: The message content
         status: Current status (new, read, replied, archived)
         ip_address: Sender's IP address for spam prevention
@@ -82,6 +106,18 @@ class ContactSubmission(UUIDMixin, TimestampMixin, Base):
     )
     subject: Mapped[Optional[str]] = mapped_column(
         String(500),
+        nullable=True,
+    )
+    phone: Mapped[Optional[str]] = mapped_column(
+        String(50),
+        nullable=True,
+    )
+    country: Mapped[Optional[str]] = mapped_column(
+        String(255),
+        nullable=True,
+    )
+    area_of_interest: Mapped[Optional[str]] = mapped_column(
+        contact_area_of_interest_enum,
         nullable=True,
     )
 

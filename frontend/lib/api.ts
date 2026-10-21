@@ -45,8 +45,11 @@ async function request<T>(
 export async function submitContact(data: {
   name: string
   email: string
-  subject?: string
   message: string
+  company?: string
+  phone?: string
+  country?: string
+  area_of_interest?: string
 }): Promise<{ id: string }> {
   return request<{ id: string }>('/contact', {
     method: 'POST',

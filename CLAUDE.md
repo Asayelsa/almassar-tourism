@@ -1,3 +1,5 @@
+@.claude/platform-guidance.md
+
 # Create A International Corporate
 
 > AI Agent Guidance File - This file provides context for AI assistants working on this codebase.

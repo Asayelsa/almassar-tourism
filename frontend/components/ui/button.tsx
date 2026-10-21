@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 
-type Variant = 'primary' | 'secondary' | 'ghost'
+type Variant = 'primary' | 'secondary' | 'ghost' | 'outline-light'
 
 const base =
   'inline-flex items-center justify-center gap-2 rounded-full font-medium transition-colors ' +
@@ -9,10 +9,11 @@ const base =
   'disabled:opacity-50 disabled:pointer-events-none'
 
 const variants: Record<Variant, string> = {
-  primary: 'bg-accent text-white hover:bg-accent-strong',
+  primary: 'bg-accent text-ink hover:bg-accent-strong',
   secondary:
     'bg-ink/[0.06] text-ink hover:bg-ink/10 dark:bg-paper/10 dark:text-paper dark:hover:bg-paper/15',
   ghost: 'text-ink/70 hover:text-ink dark:text-paper/70 dark:hover:text-paper',
+  'outline-light': 'border border-paper/40 text-paper hover:bg-paper/10',
 }
 
 const sizes = {
