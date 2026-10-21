@@ -1,0 +1,16 @@
+[2026-10-21T15:57:04.108Z] info  code-server 4.105.1 811ec6c1d60add2eb92446161ca812828fdbaa7f
+[2026-10-21T15:57:04.115Z] info  Using user-data-dir /opt/tediux-deploy-api/src/ide-workspaces/default-42d6f3fc68-12334612/data
+[2026-10-21T15:57:04.128Z] info  Using config file /opt/tediux/projects/default/locally_initialised/42d6f3fc-6853-4abf-a5bf-9e132af66c77/.config/code-server/config.yaml
+[2026-10-21T15:57:04.128Z] info  HTTP server listening on http://127.0.0.1:9117/
+[2026-10-21T15:57:04.128Z] info    - Authentication is enabled
+[2026-10-21T15:57:04.128Z] info      - Using password from /opt/tediux/projects/default/locally_initialised/42d6f3fc-6853-4abf-a5bf-9e132af66c77/.config/code-server/config.yaml
+[2026-10-21T15:57:04.128Z] info    - Not serving HTTPS
+[2026-10-21T15:57:04.128Z] info  Session server listening on /opt/tediux-deploy-api/src/ide-workspaces/default-42d6f3fc68-12334612/data/code-server-ipc.sock
+[2026-10-21T15:57:34.003Z] info  code-server 4.105.1 811ec6c1d60add2eb92446161ca812828fdbaa7f
+[2026-10-21T15:57:34.004Z] info  Using user-data-dir /opt/tediux-deploy-api/src/ide-workspaces/default-42d6f3fc68-12334612/data
+[2026-10-21T15:57:34.015Z] info  Using config file /opt/tediux/projects/default/locally_initialised/42d6f3fc-6853-4abf-a5bf-9e132af66c77/.config/code-server/config.yaml
+[2026-10-21T15:57:34.015Z] info  HTTP server listening on http://127.0.0.1:9117/
+[2026-10-21T15:57:34.015Z] info    - Authentication is enabled
+[2026-10-21T15:57:34.015Z] info      - Using password from /opt/tediux/projects/default/locally_initialised/42d6f3fc-6853-4abf-a5bf-9e132af66c77/.config/code-server/config.yaml
+[2026-10-21T15:57:34.015Z] info    - Not serving HTTPS
+[2026-10-21T15:57:34.015Z] info  Session server listening on /opt/tediux-deploy-api/src/ide-workspaces/default-42d6f3fc68-12334612/data/code-server-ipc.sock
