@@ -23,13 +23,13 @@ export function Partners({ dict }: { dict: Dictionary }) {
           {partners.map((partner) => (
             <div
               key={partner.name}
-              className="flex h-20 items-center justify-center rounded-xl bg-white p-4 shadow-sm"
+              className="flex h-24 items-center justify-center rounded-xl bg-white p-4 shadow-sm"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={partner.logo}
                 alt={partner.name}
-                className="max-h-10 w-auto max-w-full object-contain"
+                className={`${partner.maxH ?? 'max-h-10'} w-auto max-w-full object-contain`}
               />
             </div>
           ))}
