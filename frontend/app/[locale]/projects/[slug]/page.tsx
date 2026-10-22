@@ -81,12 +81,53 @@ export default async function ProjectDetailPage({
               {locale === 'ar' ? '→' : '←'} {dict.projectsPage.detail.backLabel}
             </Link>
 
-            <div className="mt-10 space-y-5">
-              {copy.body.map((p) => (
-                <p key={p} className="text-lg leading-relaxed text-ink/70 dark:text-paper/70">
-                  {p}
-                </p>
-              ))}
+            <div className="mt-10">
+              <p className="font-mono text-[11px] uppercase tracking-widest2 text-ink/40 dark:text-paper/40">
+                {dict.projectsPage.detail.overviewLabel}
+              </p>
+              <p className="mt-3 text-lg leading-relaxed text-ink/70 dark:text-paper/70">{copy.overview}</p>
+            </div>
+
+            <div className="mt-10">
+              <p className="font-mono text-[11px] uppercase tracking-widest2 text-ink/40 dark:text-paper/40">
+                {dict.projectsPage.detail.objectivesLabel}
+              </p>
+              <ul className="mt-3 space-y-2">
+                {copy.objectives.map((item) => (
+                  <li key={item} className="flex items-start gap-2 text-sm leading-relaxed text-ink/70 dark:text-paper/70">
+                    <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-teal" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="mt-10">
+              <p className="font-mono text-[11px] uppercase tracking-widest2 text-ink/40 dark:text-paper/40">
+                {dict.projectsPage.detail.scopeLabel}
+              </p>
+              <p className="mt-3 leading-relaxed text-ink/70 dark:text-paper/70">{copy.scope}</p>
+            </div>
+
+            <div className="mt-10">
+              <p className="font-mono text-[11px] uppercase tracking-widest2 text-ink/40 dark:text-paper/40">
+                {dict.projectsPage.detail.phasesLabel}
+              </p>
+              <div className="mt-3 grid gap-x-8 gap-y-2 sm:grid-cols-2">
+                {copy.phases.map((phase, i) => (
+                  <div key={phase} className="flex items-start gap-3 border-b border-ink/10 py-2 dark:border-paper/10">
+                    <span className="font-mono text-xs text-accent">{String(i + 1).padStart(2, '0')}</span>
+                    <span className="text-sm text-ink/75 dark:text-paper/75">{phase}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-10">
+              <p className="font-mono text-[11px] uppercase tracking-widest2 text-ink/40 dark:text-paper/40">
+                {dict.projectsPage.detail.outcomesLabel}
+              </p>
+              <p className="mt-3 leading-relaxed text-ink/70 dark:text-paper/70">{copy.outcomes}</p>
             </div>
           </Reveal>
 

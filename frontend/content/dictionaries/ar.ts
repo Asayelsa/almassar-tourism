@@ -2,7 +2,7 @@ import type { en } from './en'
 
 export const ar: typeof en = {
   brand: {
-    name: 'AL MASSAR',
+    name: 'المسار',
     subtitle: 'التطوير السياحي',
     tagline: 'سفرٌ يتجاوز التوقعات',
     pillars: 'سفر · سياحة · تجارب · استثمار',
@@ -153,8 +153,6 @@ export const ar: typeof en = {
     },
     capabilitiesLabel: 'القدرات الأساسية',
     ctaLabel: 'اعرف أكثر',
-    investmentNote:
-      'تتم إحالة الاستشارات القانونية والمالية والتقنية والتقييمية المتخصصة والخاضعة للتنظيم إلى مختصين مرخّصين وفق الحاجة. تنسّق المسار الوصول والتعريف بين الأطراف، ولا تقدّم استشارات مهنية مرخّصة بنفسها.',
     detail: {
       backLabel: 'جميع الخدمات',
       ctaHeadline: 'هل تودّ بدء المحادثة؟',
@@ -198,6 +196,11 @@ export const ar: typeof en = {
     },
     detail: {
       backLabel: 'جميع المشاريع',
+      overviewLabel: 'نبذة',
+      objectivesLabel: 'الأهداف',
+      scopeLabel: 'نطاق العمل',
+      phasesLabel: 'مراحل التنفيذ',
+      outcomesLabel: 'النتائج المستهدفة',
     },
   },
 

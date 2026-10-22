@@ -2,11 +2,7 @@ import type { Dictionary } from '@/content/dictionaries'
 import { partners } from '@/content/partners-data'
 import { Reveal } from '@/components/reveal'
 
-/**
- * Wordmark strip for confirmed AL MASSAR partners. Swap a name for an
- * <Image> once its official logo file lands in public/partners/ (see
- * content/partners-data.ts for the exact filename expected per partner).
- */
+/** Logo strip for confirmed AL MASSAR partners, using their official marks. */
 export function Partners({ dict }: { dict: Dictionary }) {
   return (
     <section className="border-y border-ink/10 px-6 py-20 dark:border-paper/10">
@@ -22,13 +18,19 @@ export function Partners({ dict }: { dict: Dictionary }) {
 
         <Reveal
           delay={0.08}
-          className="mt-12 grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3 lg:grid-cols-6"
+          className="mt-12 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-6"
         >
           {partners.map((partner) => (
-            <div key={partner.name} className="flex items-center justify-center">
-              <span className="font-display text-lg font-semibold tracking-tight text-ink/40 transition-colors hover:text-ink dark:text-paper/40 dark:hover:text-paper">
-                {partner.name}
-              </span>
+            <div
+              key={partner.name}
+              className="flex h-20 items-center justify-center rounded-xl bg-white p-4 shadow-sm"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={partner.logo}
+                alt={partner.name}
+                className="max-h-10 w-auto max-w-full object-contain"
+              />
             </div>
           ))}
         </Reveal>

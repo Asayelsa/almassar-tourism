@@ -2,7 +2,10 @@ import { NextRequest, NextResponse } from 'next/server'
 import { defaultLocale, isLocale } from '@/content/i18n'
 
 export const config = {
-  matcher: ['/((?!api|_next|favicon.ico|favicon.svg|robots.txt|sitemap.xml).*)'],
+  // Skip API routes, Next internals, and any static file (anything with a
+  // file extension, e.g. /partners/stc.svg, /favicon.svg, /robots.txt) —
+  // only real pages get the locale redirect.
+  matcher: ['/((?!api|_next|.*\\..*).*)'],
 }
 
 export function middleware(request: NextRequest) {

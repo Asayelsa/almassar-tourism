@@ -151,8 +151,6 @@ export const en = {
     },
     capabilitiesLabel: 'Key Capabilities',
     ctaLabel: 'Learn More',
-    investmentNote:
-      'Specialized legal, financial, technical, valuation and other regulated advice is referred to qualified, licensed professionals where appropriate. AL MASSAR coordinates access and introductions — it does not provide licensed professional advice.',
     detail: {
       backLabel: 'All Services',
       ctaHeadline: 'Ready to start the conversation?',
@@ -196,6 +194,11 @@ export const en = {
     },
     detail: {
       backLabel: 'All Projects',
+      overviewLabel: 'Overview',
+      objectivesLabel: 'Objectives',
+      scopeLabel: 'Scope of Work',
+      phasesLabel: 'Implementation Phases',
+      outcomesLabel: 'Targeted Outcomes',
     },
   },
 

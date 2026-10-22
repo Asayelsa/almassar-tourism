@@ -14,3 +14,48 @@
 [2026-10-21T15:57:34.015Z] info      - Using password from /opt/tediux/projects/default/locally_initialised/42d6f3fc-6853-4abf-a5bf-9e132af66c77/.config/code-server/config.yaml
 [2026-10-21T15:57:34.015Z] info    - Not serving HTTPS
 [2026-10-21T15:57:34.015Z] info  Session server listening on /opt/tediux-deploy-api/src/ide-workspaces/default-42d6f3fc68-12334612/data/code-server-ipc.sock
+[2026-10-21T16:17:28.735Z] info  code-server 4.105.1 811ec6c1d60add2eb92446161ca812828fdbaa7f
+[2026-10-21T16:17:28.735Z] info  Using user-data-dir /opt/tediux-deploy-api/src/ide-workspaces/default-42d6f3fc68-12334612/data
+[2026-10-21T16:17:28.746Z] info  Using config file /opt/tediux/projects/default/locally_initialised/42d6f3fc-6853-4abf-a5bf-9e132af66c77/.config/code-server/config.yaml
+[2026-10-21T16:17:28.746Z] info  HTTP server listening on http://127.0.0.1:9118/
+[2026-10-21T16:17:28.747Z] info    - Authentication is enabled
+[2026-10-21T16:17:28.747Z] info      - Using password from /opt/tediux/projects/default/locally_initialised/42d6f3fc-6853-4abf-a5bf-9e132af66c77/.config/code-server/config.yaml
+[2026-10-21T16:17:28.747Z] info    - Not serving HTTPS
+[2026-10-21T16:17:28.747Z] info  Session server listening on /opt/tediux-deploy-api/src/ide-workspaces/default-42d6f3fc68-12334612/data/code-server-ipc.sock
+[2026-10-21T16:18:29.458Z] info  code-server 4.105.1 811ec6c1d60add2eb92446161ca812828fdbaa7f
+[2026-10-21T16:18:29.459Z] info  Using user-data-dir /opt/tediux-deploy-api/src/ide-workspaces/default-42d6f3fc68-12334612/data
+[2026-10-21T16:18:29.470Z] info  Using config file /opt/tediux/projects/default/locally_initialised/42d6f3fc-6853-4abf-a5bf-9e132af66c77/.config/code-server/config.yaml
+[2026-10-21T16:18:29.470Z] info  HTTP server listening on http://127.0.0.1:9117/
+[2026-10-21T16:18:29.470Z] info    - Authentication is enabled
+[2026-10-21T16:18:29.470Z] info      - Using password from /opt/tediux/projects/default/locally_initialised/42d6f3fc-6853-4abf-a5bf-9e132af66c77/.config/code-server/config.yaml
+[2026-10-21T16:18:29.470Z] info    - Not serving HTTPS
+[2026-10-21T16:18:29.470Z] info  Session server listening on /opt/tediux-deploy-api/src/ide-workspaces/default-42d6f3fc68-12334612/data/code-server-ipc.sock
+[16:18:37] 
+
+
+
+
+[16:18:37] Extension host agent started.
+[16:18:37] Started initializing default profile extensions in extensions installation folder. file:///opt/tediux-deploy-api/src/ide-workspaces/default-42d6f3fc68-12334612/extensions
+[16:18:37] Completed initializing default profile extensions in extensions installation folder. file:///opt/tediux-deploy-api/src/ide-workspaces/default-42d6f3fc68-12334612/extensions
+[2026-10-21T16:22:51.049Z] info  code-server 4.105.1 811ec6c1d60add2eb92446161ca812828fdbaa7f
+[2026-10-21T16:22:51.050Z] info  Using user-data-dir /opt/tediux-deploy-api/src/ide-workspaces/default-42d6f3fc68-12334612/data
+[2026-10-21T16:22:51.063Z] info  Using config file /opt/tediux/projects/default/locally_initialised/42d6f3fc-6853-4abf-a5bf-9e132af66c77/.config/code-server/config.yaml
+[2026-10-21T16:22:51.064Z] info  HTTP server listening on http://127.0.0.1:9117/
+[2026-10-21T16:22:51.064Z] info    - Authentication is enabled
+[2026-10-21T16:22:51.064Z] info      - Using password from /opt/tediux/projects/default/locally_initialised/42d6f3fc-6853-4abf-a5bf-9e132af66c77/.config/code-server/config.yaml
+[2026-10-21T16:22:51.064Z] info    - Not serving HTTPS
+[2026-10-21T16:22:51.064Z] info  Session server listening on /opt/tediux-deploy-api/src/ide-workspaces/default-42d6f3fc68-12334612/data/code-server-ipc.sock
+[16:22:59] 
+
+
+
+
+[16:23:00] Extension host agent started.
+[16:23:00] Started initializing default profile extensions in extensions installation folder. file:///opt/tediux-deploy-api/src/ide-workspaces/default-42d6f3fc68-12334612/extensions
+[16:23:00] Completed initializing default profile extensions in extensions installation folder. file:///opt/tediux-deploy-api/src/ide-workspaces/default-42d6f3fc68-12334612/extensions
+[18:53:53] [127.0.0.1][5367d986][ManagementConnection] New connection established.
+[18:53:55] [127.0.0.1][a5b5fd72][ExtensionHostConnection] New connection established.
+[18:53:55] [127.0.0.1][a5b5fd72][ExtensionHostConnection] <1541> Launched Extension Host Process.
+[18:54:04] [127.0.0.1][5367d986][ManagementConnection] The client has disconnected gracefully, so the connection will be disposed.
+[21:54:17] [127.0.0.1][a5b5fd72][ExtensionHostConnection] <1541> Extension Host Process exited with code: 0, signal: null.

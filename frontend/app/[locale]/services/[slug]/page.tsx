@@ -83,12 +83,6 @@ export default async function ServiceDetailPage({
               ))}
             </div>
           </Reveal>
-
-          {service.slug === 'tourism-investment-advisory' && (
-            <Reveal delay={0.12} className="mt-12 rounded-2xl border border-teal/25 bg-teal/[0.05] p-8 dark:bg-teal/[0.08]">
-              <p className="text-sm leading-relaxed text-ink/70 dark:text-paper/70">{dict.servicesPage.investmentNote}</p>
-            </Reveal>
-          )}
         </div>
       </section>
 
