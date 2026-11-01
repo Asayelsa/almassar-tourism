@@ -35,7 +35,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
   return (
     <main>
-      <p>GitHub Auto Deploy Test 123</p>
       <Hero locale={locale} dict={dict} />
       <Intro dict={dict} />
       <Stats items={homeMetrics} locale={locale} />
