@@ -35,6 +35,9 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
   return (
     <main>
+  <div style={{ background: '#16a34a', color: 'white', padding: '12px', textAlign: 'center' }}>
+    اختبار تحديث GitHub - المسار السياحية
+  </div>
       <Hero locale={locale} dict={dict} />
       <Intro dict={dict} />
       <Stats items={homeMetrics} locale={locale} />
